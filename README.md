@@ -1,13 +1,13 @@
 # phalcon-container
-Docker image based on `php:7.0-fpm`
+Docker image based on `php:7.2-fpm`
 
 ### Includes these extensions
 * pdo
 * pdo_mysql
 * bcmath
 * gd
-* phalcon
+* phalcon 3.4.0
 
 ### Includes these tools
 * composer
-* php-unit 5.7
+* php-unit 7
