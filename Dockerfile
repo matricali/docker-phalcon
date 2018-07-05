@@ -24,6 +24,9 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 RUN curl -L 'https://phar.phpunit.de/phpunit-5.7.phar' > /usr/bin/phpunit57 && \
     chmod a+x /usr/bin/phpunit57
 
+RUN curl -L 'https://phar.phpunit.de/phpunit-7.phar' > /usr/bin/phpunit && \
+    chmod a+x /usr/bin/phpunit
+
 RUN apt-get autoremove -y && \
     apt-get autoclean -y && \
     apt-get clean -y
