@@ -8,7 +8,6 @@ env:
   - VERSION=3.4 VARIANT=php7.2/stretch/zts
 
 before_script:
-  - env | sort
   - cd "$VERSION/$VARIANT"
   - slash='/'; image="matricali/phalcon:${VERSION}-${VARIANT//$slash/-}"
 
@@ -22,5 +21,10 @@ script:
 
 after_script:
   - docker images
+  - docker run -it --rm $image php -m
+
+after_success:
+  - if [ "false" == "$TRAVIS_PULL_REQUEST" ]; then docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD ; fi
+  - if [ "false" == "$TRAVIS_PULL_REQUEST" ]; then docker push $image ; fi
 
 # vim:set et ts=2 sw=2:
