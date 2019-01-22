@@ -8,7 +8,10 @@ phalconVersions=(
 )
 phpVersions=(
 5.6
+7.0
+7.1
 7.2
+7.3
 )
 suites=(
 stretch
@@ -77,7 +80,7 @@ for phalconVersion in "${phalconVersions[@]}"; do
 				' "$dockerfilePath"
 
 				# remove any _extra_ blank lines created by the deletions above
-				awk '
+				gawk '
 					NF > 0 { blank = 0 }
 					NF == 0 { ++blank }
 					blank < 2 { print }
@@ -110,5 +113,5 @@ for phalconVersion in "${phalconVersions[@]}"; do
 	travisEnv="$newTravisEnv$travisEnv"
 done
 
-travis="$(awk -v 'RS=\n\n' '$1 == "env:" { $0 = "env:'"$travisEnv"'" } { printf "%s%s", $0, RS }' .travis.yml)"
+travis="$(gawk -v 'RS=\n\n' '$1 == "env:" { $0 = "env:'"$travisEnv"'" } { printf "%s%s", $0, RS }' .travis.yml)"
 echo "$travis" > .travis.yml
