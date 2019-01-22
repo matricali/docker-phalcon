@@ -17,11 +17,12 @@ suites=(
 stretch
 )
 variants=(
-cli
-apache
-fpm
 zts
+fpm
+apache
+cli
 )
+travis_variants=()
 
 generated_warning() {
 	cat <<-EOH
@@ -37,7 +38,6 @@ generated_warning() {
 travisEnv=
 for phalconVersion in "${phalconVersions[@]}"; do
 	for phpVersion in "${phpVersions[@]}"; do
-		dockerfiles=()
 		phalconUrl="https://codeload.github.com/phalcon/cphalcon/tar.gz/v${phalconVersion}"
 		rcVersion="${phalconVersion%-rc}"
 
@@ -97,20 +97,11 @@ for phalconVersion in "${phalconVersions[@]}"; do
 					-e 's!%%PHALCON_VERSION%%!'"$phalconVersion"'!' \
 					-e 's!%%PHALCON_URL%%!'"$phalconUrl"'!' \
 					"$dockerfilePath"
-				dockerfiles+=( "$dockerfilePath" )
+
+				travisEnv='\n  - VERSION='"$majorVersion.$minorVersion VARIANT=php$phpVersion/$suite/$variant""$travisEnv"
 			done
 		done
 	done;
-
-	newTravisEnv=
-	for dockerfile in "${dockerfiles[@]}"; do
-		dir="${dockerfile%Dockerfile}"
-		dir="${dir%/}"
-		variant="${dir#$majorVersion.$minorVersion}"
-		variant="${variant#/}"
-		newTravisEnv+='\n  - VERSION='"$majorVersion.$minorVersion VARIANT=$variant"
-	done
-	travisEnv="$newTravisEnv$travisEnv"
 done
 
 travis="$(gawk -v 'RS=\n\n' '$1 == "env:" { $0 = "env:'"$travisEnv"'" } { printf "%s%s", $0, RS }' .travis.yml)"
