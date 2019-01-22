@@ -22,7 +22,6 @@ fpm
 apache
 cli
 )
-travis_variants=()
 
 generated_warning() {
 	cat <<-EOH
@@ -87,8 +86,12 @@ for phalconVersion in "${phalconVersions[@]}"; do
 				' "$dockerfilePath" > "$dockerfilePath.new"
 				mv "$dockerfilePath.new" "$dockerfilePath"
 
-				# automatic `-slim` for stretch
-				# TODO always add slim once jessie is removed
+				phpXdebugPackage="xdebug"
+				if [[ ${phpVersion} == "7.3" ]]; then
+					phpXdebugPackage="xdebug-beta"
+				elif [[ ${phpVersion%%.*} -eq "5" ]]; then
+					phpXdebugPackage="xdebug-2.5.5"
+				fi
 
 				sed -ri \
 					-e 's!%%PHP_TAG%%!'"$phpTag"'!' \
@@ -96,6 +99,7 @@ for phalconVersion in "${phalconVersions[@]}"; do
 					-e 's!%%ALPINE_VERSION%%!'"$alpineVer"'!' \
 					-e 's!%%PHALCON_VERSION%%!'"$phalconVersion"'!' \
 					-e 's!%%PHALCON_URL%%!'"$phalconUrl"'!' \
+					-e 's!%%PHP_XDEBUG_PACKAGE%%!'"$phpXdebugPackage"'!' \
 					"$dockerfilePath"
 
 				travisEnv='\n  - VERSION='"$majorVersion.$minorVersion VARIANT=php$phpVersion/$suite/$variant""$travisEnv"
