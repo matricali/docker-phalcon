@@ -2,6 +2,26 @@ language: bash
 services: docker
 
 env:
+  - VERSION=3.3 VARIANT=php7.3/stretch/cli
+  - VERSION=3.3 VARIANT=php7.3/stretch/apache
+  - VERSION=3.3 VARIANT=php7.3/stretch/fpm
+  - VERSION=3.3 VARIANT=php7.3/stretch/zts
+  - VERSION=3.3 VARIANT=php7.2/stretch/cli
+  - VERSION=3.3 VARIANT=php7.2/stretch/apache
+  - VERSION=3.3 VARIANT=php7.2/stretch/fpm
+  - VERSION=3.3 VARIANT=php7.2/stretch/zts
+  - VERSION=3.3 VARIANT=php7.1/stretch/cli
+  - VERSION=3.3 VARIANT=php7.1/stretch/apache
+  - VERSION=3.3 VARIANT=php7.1/stretch/fpm
+  - VERSION=3.3 VARIANT=php7.1/stretch/zts
+  - VERSION=3.3 VARIANT=php7.0/stretch/cli
+  - VERSION=3.3 VARIANT=php7.0/stretch/apache
+  - VERSION=3.3 VARIANT=php7.0/stretch/fpm
+  - VERSION=3.3 VARIANT=php7.0/stretch/zts
+  - VERSION=3.3 VARIANT=php5.6/stretch/cli
+  - VERSION=3.3 VARIANT=php5.6/stretch/apache
+  - VERSION=3.3 VARIANT=php5.6/stretch/fpm
+  - VERSION=3.3 VARIANT=php5.6/stretch/zts
   - VERSION=3.4 VARIANT=php7.3/stretch/cli
   - VERSION=3.4 VARIANT=php7.3/stretch/apache
   - VERSION=3.4 VARIANT=php7.3/stretch/fpm
