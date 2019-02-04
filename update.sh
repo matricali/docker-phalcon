@@ -86,11 +86,22 @@ for phalconVersion in "${phalconVersions[@]}"; do
 				' "$dockerfilePath" > "$dockerfilePath.new"
 				mv "$dockerfilePath.new" "$dockerfilePath"
 
+				# select correct version for xdebug package
 				phpXdebugPackage="xdebug"
 				if [[ ${phpVersion} == "7.3" ]]; then
 					phpXdebugPackage="xdebug-beta"
 				elif [[ ${phpVersion%%.*} -eq "5" ]]; then
 					phpXdebugPackage="xdebug-2.5.5"
+				fi
+
+				# select correct version for phpunit package
+				phpunitVersion='8'
+				if [[ ${phpVersion} == '5.6' ]]; then
+					phpunitVersion='5'
+				elif [[ ${phpVersion} == '7.0' ]]; then
+					phpunitVersion='6'
+				elif [[ ${phpVersion} == '7.1' ]]; then
+					phpunitVersion='7'
 				fi
 
 				sed -ri \
@@ -100,6 +111,7 @@ for phalconVersion in "${phalconVersions[@]}"; do
 					-e 's!%%PHALCON_VERSION%%!'"$phalconVersion"'!' \
 					-e 's!%%PHALCON_URL%%!'"$phalconUrl"'!' \
 					-e 's!%%PHP_XDEBUG_PACKAGE%%!'"$phpXdebugPackage"'!' \
+					-e 's!%%PHPUNIT_VERSION%%!'"$phpunitVersion"'!' \
 					"$dockerfilePath"
 
 				travisEnv='\n  - VERSION='"$majorVersion.$minorVersion VARIANT=php$phpVersion/$suite/$variant""$travisEnv"
