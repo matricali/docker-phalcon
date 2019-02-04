@@ -5,6 +5,7 @@ cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
 phalconVersions=(
 3.4.2
+3.3.2
 )
 phpVersions=(
 5.6
