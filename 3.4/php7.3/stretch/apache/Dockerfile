@@ -10,11 +10,12 @@ MAINTAINER Jorge Matricali <jorgematricali@gmail.com>
 
 ENV PHALCON_VERSION 3.4.2
 ENV PHALCON_URL https://codeload.github.com/phalcon/cphalcon/tar.gz/v3.4.2
+ENV PHPUNIT_VERSION 8
 
 RUN set -x && \
     apt-get update && \
     # Install dependencies
-    apt-get install --no-install-recommends --no-install-suggests -y git unzip libpng-dev && \
+    apt-get install --no-install-recommends --no-install-suggests -y git unzip libpng-dev libpng16-16 && \
     # Build and install PHP extensions
     docker-php-ext-install -j$(nproc) pdo && \
     docker-php-ext-install -j$(nproc) pdo_mysql && \
@@ -36,7 +37,7 @@ RUN set -x && \
     php composer-setup.php --install-dir=/usr/bin --filename=composer && \
     php -r "unlink('composer-setup.php');" && \
     # PHPUnit
-    curl -L 'https://phar.phpunit.de/phpunit-7.phar' > /usr/bin/phpunit && \
+    curl -L "https://phar.phpunit.de/phpunit-${PHPUNIT_VERSION}.phar" > /usr/bin/phpunit && \
     chmod a+x /usr/bin/phpunit && \
     # MongoDB
     apt-get install --no-install-recommends --no-install-suggests -y libcurl4-openssl-dev libssl-dev pkg-config && \
