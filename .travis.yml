@@ -37,7 +37,7 @@ script:
 
 after_script:
   - docker images
-  - docker run -it --rm $image php -m
+  - docker run -it --rm $image sh -c "php -v && php -m && phpunit -v && composer --version"
 
 after_success:
   - if [ "false" == "$TRAVIS_PULL_REQUEST" ]; then docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD ; fi
