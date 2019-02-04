@@ -8,7 +8,7 @@ ENV PHALCON_URL %%PHALCON_URL%%
 RUN set -x && \
     apt-get update && \
     # Install dependencies
-    apt-get install --no-install-recommends --no-install-suggests -y git unzip libpng-dev && \
+    apt-get install --no-install-recommends --no-install-suggests -y git unzip libpng-dev libpng16-16 && \
     # Build and install PHP extensions
     docker-php-ext-install -j$(nproc) pdo && \
     docker-php-ext-install -j$(nproc) pdo_mysql && \
