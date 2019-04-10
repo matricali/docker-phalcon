@@ -8,8 +8,8 @@ FROM php:7.2-cli-stretch
 
 MAINTAINER Jorge Matricali <jorgematricali@gmail.com>
 
-ENV PHALCON_VERSION 3.4.2
-ENV PHALCON_URL https://codeload.github.com/phalcon/cphalcon/tar.gz/v3.4.2
+ENV PHALCON_VERSION 3.4.3
+ENV PHALCON_URL https://codeload.github.com/phalcon/cphalcon/tar.gz/v3.4.3
 ENV PHPUNIT_VERSION 8
 
 RUN set -x && \
