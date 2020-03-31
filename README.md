@@ -6,15 +6,19 @@
 [![](https://img.shields.io/docker/stars/matricali/phalcon.svg)](https://hub.docker.com/r/matricali/phalcon/)
 [![](https://img.shields.io/docker/pulls/matricali/phalcon.svg)](https://hub.docker.com/r/matricali/phalcon/)
 
-Docker image based on `php:7.0-fpm`
+Docker image based on `php:7.3-fpm`
 
-### Includes these extensions
+### Includes the following extensions
 * pdo
 * pdo_mysql
 * bcmath
 * gd
+* mongodb
 * phalcon
+* xdebug
 
-### Includes these tools
+### Includes the following tools
 * composer
-* php-unit 5.7
+* php-unit
+
+# Tags

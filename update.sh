@@ -9,7 +9,7 @@ phalconVersions=(
 )
 phpVersions=(
 '_phpv=(7.1 7.2 7.3)'
-'_phpv=(5.6 7.0 7.1 7.2 7.3)'
+'_phpv=(5.6 7.1 7.2 7.3)'
 )
 suites=(
 stretch
