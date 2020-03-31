@@ -4,12 +4,12 @@ set -Eeuo pipefail
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
 phalconVersions=(
-3.4.3
-3.4.2
+4.0.5
+3.4.5
 )
 phpVersions=(
 '_phpv=(7.1 7.2 7.3)'
-'_phpv=(5.6 7.0)'
+'_phpv=(5.6 7.0 7.1 7.2 7.3)'
 )
 suites=(
 stretch
