@@ -8,8 +8,8 @@ FROM php:7.2-zts-stretch
 
 MAINTAINER Jorge Matricali <jorgematricali@gmail.com>
 
-ENV PHALCON_VERSION 3.4.3
-ENV PHALCON_URL https://codeload.github.com/phalcon/cphalcon/tar.gz/v3.4.3
+ENV PHALCON_VERSION 3.4.5
+ENV PHALCON_URL https://codeload.github.com/phalcon/cphalcon/tar.gz/v3.4.5
 ENV PHPUNIT_VERSION 8
 
 RUN set -x && \
